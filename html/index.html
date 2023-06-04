@@ -18,13 +18,13 @@
 <body>
     <!-- Thanh nav -->
     <nav>
-        
+
         <div class="task-bar">
-            
+
             <div class="logo">
                 <a href="./index.html"><img src="../image/King&Queen (1).png" alt="Logo"></a>
             </div>
-            
+
 
             <ul>
                 <li><a href="./index.html">Trang chủ</a></li>
@@ -54,19 +54,19 @@
                 </div>
             </div>
             <div class="search-cart">
-                <div class="search">
-                    <input type="text" placeholder="Search" id="searchInput">
-                    <button id="searchButton" onclick="searchProducts()" style="border-radius: 5px; font-size: 20px; ">Tìm kiếm</button>
-                </div>
+                <form id="search-form">
+                    <input type="text" id="search-input" name="search-input" placeholder="Search">
+                    <button type="submit">Tìm kiếm</button>
+                </form>
             </div>
-                <div class="cart" onclick="addToCart('${product.name}')">
-                    <span  class="material-symbols-outlined search-icon">shopping_cart</span>
-                </div>
+            <div class="cart" onclick="addToCart('${product.name}')">
+                <span class="material-symbols-outlined search-icon">shopping_cart</span>
             </div>
+        </div>
         </div>
 
     </nav>
-     
+
     <div class="banner">
         <a href="#"><img src="../image/banner1.jpg" alt="banner"></a>
     </div>

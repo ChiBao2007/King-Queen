@@ -1,8 +1,11 @@
-// Lấy phần tử form đăng nhập
-let loginForm = document.getElementById('login-form');
-
-// Thêm trình lắng nghe sự kiện cho việc đăng nhập
-loginForm.addEventListener('submit', handleLogin);
+function showSnackbar(message) {
+  let snackbar = document.getElementById("snackbar");
+  snackbar.textContent = message;
+  snackbar.classList.add("show");
+  setTimeout(function() {
+    snackbar.classList.remove("show");
+  }, 3000);
+}
 
 function handleLogin(event) {
   event.preventDefault(); // Ngăn chặn hành động mặc định của form khi submit
@@ -49,17 +52,8 @@ function handleLogin(event) {
       }
     } else {
       // Đăng nhập không thành công, hiển thị thông báo lỗi
-      alert('Tên đăng nhập hoặc mật khẩu không đúng.');
+      showSnackbar('Tên đăng nhập hoặc mật khẩu không đúng.');
       return;
     }
   }
-}
-// Lưu thông tin người dùng vào Session Storage
-sessionStorage.setItem('currentUser', JSON.stringify(user));
-
-// Hiển thị tên người dùng trên giao diện web
-let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-if (currentUser) {
-  let usernameElement = document.getElementById('username');
-  usernameElement.textContent = currentUser.name;
 }
