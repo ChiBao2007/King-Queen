@@ -58,10 +58,13 @@ function handleRegister(event) {
   }
 
   // Tạo một đối tượng người dùng mới và thêm vào danh sách người dùng
+  const idUser = Math.floor(Math.random() * 1000000); // Tạo idUser ngẫu nhiên
   let newUser = {
+    idUser: idUser,
     name: name,
     email: email,
-    password: password
+    password: password,
+    cart: [] // Thêm giỏ hàng trống cho mỗi user
   };
   userList.push(newUser);
 
