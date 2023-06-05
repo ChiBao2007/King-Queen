@@ -166,9 +166,9 @@ function showListItems() {
                         <div class="title-products">
                             <p>${product.name}</p>
                             <p>${product.price.toLocaleString()}đ</p>
-                            <p><span class="material-symbols-outlined">
+                            <button type="button" class="btn btn-cart"><span class="material-symbols-outlined">
                                     shopping_cart
-                                </span></p>
+                                </span>Thêm vào giỏ</button>
                         </div>
                     </div>
                 `;
