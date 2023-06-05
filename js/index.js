@@ -129,16 +129,17 @@ let listProducts = [
         brand: "Diptyque"
     }
 ];
-//function tạo id product
-/* function uuid() {
-    let uuid = new Date().getMilliseconds() + Math.floor(Math.random()*999999999);
+/* //function tạo id product
+function uuid() {
+    let uuid = new Date().getMilliseconds() + Math.floor(Math.random() * 999999999);
     return uuid;
-  }
-  for (let i = 0; i < listProducts.length; i++) {
-      listProducts[i].uuid =uuid();
-  }
-  console.log(listProducts);
- */
+}
+for (let i = 0; i < listProducts.length; i++) {
+    listProducts[i].uuid = uuid();
+}
+localStorage.setItem("listProducts", JSON.stringify(listProducts)); */
+
+
 
 let currentPage = 1;
 let totalItemPage = 8;
@@ -166,7 +167,7 @@ function showListItems() {
                         <div class="title-products">
                             <p>${product.name}</p>
                             <p>${product.price.toLocaleString()}đ</p>
-                            <button onclick="addToCart(idProduct)" class="btn btn-cart"><span class="material-symbols-outlined">
+                            <button onclick="addToCart(${product.id})" class="btn btn-cart" data-product-id="${product.id}"><span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>Thêm vào giỏ</button>
                         </div>

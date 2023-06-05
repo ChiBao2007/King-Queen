@@ -41,7 +41,7 @@ function handleLogin(event) {
     // Kiểm tra xem người dùng có tồn tại trong danh sách người dùng hay không
     if (user) {
       // Lưu thông tin người dùng vào Session Storage
-      sessionStorage.setItem('currentUser', JSON.stringify(user));
+      sessionStorage.setItem('currentUser', JSON.stringify(user)); //
 
       // Nếu người dùng là admin, chuyển hướng đến trang admin
       if (user.isAdmin) {

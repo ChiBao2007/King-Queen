@@ -65,35 +65,38 @@
                     <button type="submit">Tìm kiếm</button>
                 </form>
             </div>
-           
+
         </div>
         </div>
-        <button id="cart" aria-hidden="true"> <span class="material-symbols-outlined search-icon">shopping_cart</span>Giỏ
-            hàng</button>
+        <button id="cart" aria-hidden="true">
+            <span class="material-symbols-outlined search-icon">shopping_cart</span>
+            Giỏ hàng (<span id="cart-count">0</span>)
+        </button>
+
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Giỏ Hàng</h5>
+                    <h5 class="modal-title">Giỏ hàng</h5>
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-body">
                     <div class="cart-row">
-                        <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+                        <span class="cart-item cart-header cart-column">Sản phẩm</span>
                         <span class="cart-price cart-header cart-column">Giá</span>
-                        <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+                        <span class="cart-quantity cart-header cart-column">Số lượng</span>
                     </div>
                     <div class="cart-items">
 
                     </div>
                     <div class="cart-total">
-                        <strong class="cart-total-title">Tổng Cộng:</strong>
-                        <span class="cart-total-price">0VNĐ</span>
+                        <strong class="cart-total-title">Tổng cộng:</strong>
+                        <span class="cart-total-price">0 VNĐ</span>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-footer">Đóng</button>
-                    <button type="button" class="btn btn-primary order">Thanh Toán</button>
+                    <button type="button" class="btn btn-primary order">Thanh toán</button>
                 </div>
             </div>
         </div>
