@@ -1,27 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Trang quản trị</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="../js/admin.js"></script>
 </head>
 
 <body>
-    <h1>Danh sách người dùng</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Họ tên</th>
-                <th>ID</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody id="user-list">
-            <!-- Các hàng dữ liệu người dùng sẽ được thêm vào đây bằng JavaScript -->
-        </tbody>
-    </table>
-
-    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Trang Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#user-table">Người dùng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#product-table">Sản phẩm</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/index.html">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <!-- Form thêm người dùng -->
+        <div id="add-user-form" class="card mb-3">
+            <div class="card-header">
+                Thêm người dùng
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="is-admin">
+                        <label class="form-check-label" for="is-admin">Quản trị viên</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Thêm</button>
+                </form>
+            </div>
+        </div>
+        <!-- Form sửa thông tin người dùng -->
+        <div id="edit-user-form" class="card mb-3">
+            <div class="card-header">
+                Sửa thông tin người dùng
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="is-admin">
+                        <label class="form-check-label" for="is-admin">Quản trị viên</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Lưu</button>
+                    <button type="button" class="btn btn-secondary mt-3 ml-3" data-dismiss="modal">Đóng</button>
+                </form>
+            </div>
+        </div>
+        <!-- Form thêm sản phẩm -->
+        <div id="add-product-form" class="card mb-3">
+            <div class="card-header">
+                Thêm sản phẩm
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="text" class="form-control" id="id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tên sản phẩm:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Giá:</label>
+                        <input type="number" class="form-control" id="price" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Thêm</button>
+                </form>
+            </div>
+        </div>
+        <!-- Form sửa thông tin sản phẩm -->
+        <div id="edit-product-form" class="card mb-3">
+            <div class="card-header">
+                Sửa thông tin sản phẩm
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="text" class="form-control" id="id" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tên sản phẩm:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Giá:</label>
+                        <input type="number" class="form-control" id="price" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Lưu</button>
+                    <button type="button" class="btn btn-secondary mt-3 ml-3" data-dismiss="modal">Đóng</button>
+                </form>
+            </div>
+        </div>
+        <!-- Danh sách người dùng -->
+        <div id="user-table" class="table-responsive">
+            <h3>Danh sách người dùng</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Mật khẩu</th>
+                        <th>Quản trị viên</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dữ liệu được tạo ra bởi JavaScript -->
+                </tbody>
+            </table>
+            <button id="add-user-button" class="btn btn-primary mt-3">Thêm người dùng</button>
+        </div>
+        <!-- Danh sách sản phẩm -->
+        <div id="product-table" class="table-responsive">
+            <h3>Danh sách sản phẩm</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dữ liệu được tạo ra bởi JavaScript -->
+                </tbody>
+            </table>
+            <button id="add-product-button" class="btn btn-primary mt-3">Thêm sản phẩm</button>
+        </div>
+    </div>
 </body>
 
 </html>

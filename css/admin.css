@@ -1,0 +1,43 @@
+/* Thiết lập chiều cao cho bảng */
+.table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* Thiết lập margin cho các form */
+.card {
+    margin-bottom: 20px;
+}
+
+/* Thiết lập kích thước cho các button */
+.btn {
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+/* Thiết lập màu chủ đạo cho trang */
+.navbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Thiết lập màu cho các button */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}

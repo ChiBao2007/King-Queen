@@ -22,7 +22,7 @@ order.addEventListener("click", function () {
   message.textContent = "Cảm ơn bạn đã thanh toán đơn hàng";
   document.body.appendChild(message);
 
-  // Sau vài giây, ẩn thông báo
+  // Sau vài giây, ẩn thông báo 
   setTimeout(function () {
     message.remove();
   }, 3000);
@@ -43,8 +43,9 @@ window.addEventListener("click", function (event) {
 });
 
 function addToCart(id) {
+  console.log(id)
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
-  if (!currentUser) {
+  if (!currentUser.name) {
     alert("Bạn phải đăng nhập để mua hàng");
     return;
   }
@@ -58,7 +59,7 @@ function addToCart(id) {
   const cart = currentUser.cart || [];
   let cartItem = cart.find((item) => item.id === id);
   if (cartItem) {
-    cartItem.quantity++;
+    cartItem.quantity += 1;
   } else {
     cartItem = {
       id: product.id,
@@ -113,7 +114,7 @@ function updateCartUI() {
 
   // Cập nhật tổng giá trị của giỏ hàng
   const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  document.querySelector(".cart-total-price").textContent = totalPrice.toString() + " VNĐ";
+  document.querySelector(".cart-total-price").textContent = totalPrice.toLocaleString() + " VNĐ";
 
   // Gán sự kiện xóa sản phẩm trực tiếp cho các button "Xóa" trong giỏ hàng
   const removeButtons = document.querySelectorAll(".cart-item-remove");

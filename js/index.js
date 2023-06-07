@@ -6,7 +6,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "women",
-        brand: "Channel"
+        brand: "Channel",
+        id: uuid()
     },
     {
         name: "Burberry Brit Rhythm For Him",
@@ -14,7 +15,8 @@ let listProducts = [
         price: 850000,
         quantity: 1,
         gender: "men",
-        brand: "Burberry"
+        brand: "Burberry",
+        id: uuid()
     },
     {
         name: "Acqua Di Giò Absolu Eau De Parfum",
@@ -22,7 +24,8 @@ let listProducts = [
         price: 700000,
         quantity: 1,
         gender: "men",
-        brand: " Giorgio Armani"
+        brand: " Giorgio Armani",
+        id: uuid()
     },
     {
         name: "Creed Aventus By Creed",
@@ -30,7 +33,8 @@ let listProducts = [
         price: 750000,
         quantity: 1,
         gender: "men",
-        brand: " CREED"
+        brand: " CREED",
+        id: uuid()
     },
     {
         name: "Dior J'adore",
@@ -38,7 +42,8 @@ let listProducts = [
         price: 550000,
         quantity: 1,
         gender: "women",
-        brand: "Dior"
+        brand: "Dior",
+        id: uuid()
     },
     {
         name: "Dior Miss Dior Rose",
@@ -46,7 +51,8 @@ let listProducts = [
         price: 600000,
         quantity: 1,
         gender: "women",
-        brand: "Dior"
+        brand: "Dior",
+        id: uuid()
     },
     {
         name: "Gucci A Song For The Rose Eau De Parfum",
@@ -54,7 +60,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "women",
-        brand: "Gucci"
+        brand: "Gucci",
+        id: uuid()
     },
     {
         name: "Jean Paul Gaultier",
@@ -62,7 +69,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "men",
-        brand: "Classique"
+        brand: "Classique",
+        id: uuid()
     },
     {
         name: "Gucci Made To Measure Eau De ToiLette",
@@ -70,7 +78,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "men",
-        brand: "Gucci"
+        brand: "Gucci",
+        id: uuid()
     },
     {
         name: "Gucci Pour Homme Eau De Toilette",
@@ -78,7 +87,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "men",
-        brand: "Gucci"
+        brand: "Gucci",
+        id: uuid()
     },
     {
         name: "Versace DyLan Blue",
@@ -86,7 +96,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "men",
-        brand: "Versace"
+        brand: "Versace",
+        id: uuid()
     },
     {
         name: "Viktor & Rolf Flowerbomb",
@@ -94,7 +105,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "women",
-        brand: "Viktor & Rolf"
+        brand: "Viktor & Rolf",
+        id: uuid()
     },
     {
         name: "YSL Black Opium",
@@ -102,7 +114,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "women",
-        brand: "YSL"
+        brand: "YSL",
+        id: uuid()
     },
     {
         name: "Yves Saint Laurent Y",
@@ -110,7 +123,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "men",
-        brand: "Yves"
+        brand: "Yves",
+        id: uuid()
     },
     {
         name: "Versace Eros",
@@ -118,7 +132,8 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "men",
-        brand: "Versace"
+        brand: "Versace",
+        id: uuid()
     },
     {
         name: "Diptyque Do Son",
@@ -126,10 +141,12 @@ let listProducts = [
         price: 500000,
         quantity: 1,
         gender: "women",
-        brand: "Diptyque"
+        brand: "Diptyque",
+        id: uuid()
+
     }
 ];
-/* //function tạo id product
+//function tạo id product
 function uuid() {
     let uuid = new Date().getMilliseconds() + Math.floor(Math.random() * 999999999);
     return uuid;
@@ -137,7 +154,7 @@ function uuid() {
 for (let i = 0; i < listProducts.length; i++) {
     listProducts[i].uuid = uuid();
 }
-localStorage.setItem("listProducts", JSON.stringify(listProducts)); */
+localStorage.setItem("listProducts", JSON.stringify(listProducts));
 
 
 
@@ -153,11 +170,15 @@ function startEnd(page) {
 
 startEnd(currentPage);
 
-function showListItems() {
+function showListItems(searchTerm) {
     let result = "";
-    for (let i = 0; i < listProducts.length; i++) {
+    let filteredList = listProducts;
+    if (searchTerm) {
+        filteredList = listProducts.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
+    for (let i = 0; i < filteredList.length; i++) {
         if (i >= start && i < end) {
-            let product = listProducts[i];
+            let product = filteredList[i];
             result +=
                 `
                     <div class="item-products">
@@ -167,16 +188,17 @@ function showListItems() {
                         <div class="title-products">
                             <p>${product.name}</p>
                             <p>${product.price.toLocaleString()}đ</p>
-                            <button onclick="addToCart(${product.id})" class="btn btn-cart" data-product-id="${product.id}"><span class="material-symbols-outlined">
+                            <button onclick="addToCart(${product.id})" class="btn btn-cart" data-product-id="${product.uuid}"><span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>Thêm vào giỏ</button>
                         </div>
                     </div>
                 `;
+
         }
     }
     document.getElementById('renderListProducts').innerHTML = result;
-};
+}
 
 function showListPages() {
     let result = ""
